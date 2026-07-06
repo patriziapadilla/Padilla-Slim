@@ -1,420 +1,465 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Padilla Slim | 3D Skin Reset Video</title>
-
-<style>
-*{box-sizing:border-box}
-body{
-  margin:0;
-  background:#020406;
-  color:white;
-  font-family:Arial, Helvetica, sans-serif;
-  overflow:hidden;
-}
-#app{
-  width:100vw;
-  height:100vh;
-  position:relative;
-  background:#020406;
-}
-.scene{
-  position:absolute;
-  inset:0;
-  opacity:0;
-  transition:opacity 1.2s ease;
-}
-.scene.active{opacity:1;z-index:2}
-.scene img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  transform:scale(1.12);
-  animation:kenburns 9s ease forwards;
-}
-@keyframes kenburns{
-  from{transform:scale(1.15) translate(0,0)}
-  to{transform:scale(1.02) translate(-1.5%,1%)}
-}
-.dark{
-  position:absolute;
-  inset:0;
-  z-index:4;
-  background:
-    radial-gradient(circle at 65% 35%, transparent 0 20%, rgba(0,0,0,.28) 55%),
-    linear-gradient(to top,rgba(0,0,0,.82),rgba(0,0,0,.25),rgba(0,0,0,.42));
-}
-.copy{
-  position:absolute;
-  z-index:8;
-  left:6%;
-  bottom:9%;
-  max-width:820px;
-}
-.kicker{
-  color:#88e3dc;
-  font-size:12px;
-  letter-spacing:4px;
-  text-transform:uppercase;
-  font-weight:900;
-  margin-bottom:14px;
-}
-h1{
-  margin:0 0 16px;
-  font-size:clamp(42px,7vw,96px);
-  line-height:.88;
-  font-family:Georgia,serif;
-  letter-spacing:-3px;
-}
-p{
-  margin:0;
-  font-size:clamp(17px,2vw,25px);
-  line-height:1.45;
-  color:rgba(255,255,255,.86);
-  max-width:760px;
-}
-.progress{
-  position:absolute;
-  left:0;
-  bottom:0;
-  width:0%;
-  height:5px;
-  background:linear-gradient(90deg,#88e3dc,#77aef7,#f2c879);
-  z-index:20;
-  transition:width .4s linear;
-}
-.play{
-  position:absolute;
-  inset:0;
-  z-index:50;
-  display:grid;
-  place-items:center;
-  background:
-    radial-gradient(circle at center,rgba(20,80,90,.35),rgba(0,0,0,.92) 68%);
-  text-align:center;
-  padding:25px;
-}
-.play h2{
-  font-family:Georgia,serif;
-  font-size:clamp(44px,8vw,96px);
-  line-height:.9;
-  margin:0 0 20px;
-}
-.play p{
-  margin:0 auto 28px;
-}
-button{
-  border:0;
-  background:linear-gradient(90deg,#88e3dc,#77aef7);
-  color:#031014;
-  padding:16px 28px;
-  border-radius:999px;
-  font-weight:900;
-  letter-spacing:1px;
-  cursor:pointer;
-  font-size:14px;
-}
-.skip{
-  position:absolute;
-  right:22px;
-  bottom:22px;
-  z-index:30;
-  background:rgba(255,255,255,.12);
-  border:1px solid rgba(255,255,255,.28);
-  color:white;
-  padding:11px 16px;
-}
-.effect{
-  position:absolute;
-  inset:0;
-  z-index:6;
-  pointer-events:none;
-  opacity:0;
-}
-.scene.active .steam{
-  opacity:.75;
-  background:
-    radial-gradient(ellipse at 35% 90%,rgba(255,255,255,.45),transparent 28%),
-    radial-gradient(ellipse at 65% 90%,rgba(180,230,255,.32),transparent 34%);
-  filter:blur(16px);
-  animation:steam 4s ease-in-out infinite;
-}
-@keyframes steam{
-  0%,100%{transform:translateY(50px);opacity:.25}
-  50%{transform:translateY(-60px);opacity:.8}
-}
-.scene.active .suction{
-  opacity:.75;
-  background:
-    radial-gradient(circle at 48% 38%,rgba(110,220,255,.35),transparent 18%),
-    repeating-radial-gradient(circle at 48% 38%,rgba(130,230,255,.24) 0 2px,transparent 3px 48px);
-  mix-blend-mode:screen;
-  animation:pulse 2.8s infinite;
-}
-.scene.active .heat{
-  opacity:.8;
-  background:
-    radial-gradient(circle at 50% 43%,rgba(255,74,35,.38),transparent 22%),
-    repeating-radial-gradient(circle at 50% 43%,rgba(255,155,70,.25) 0 2px,transparent 3px 55px);
-  mix-blend-mode:screen;
-  animation:pulse 2.5s infinite;
-}
-.scene.active .cold{
-  opacity:.9;
-  background:
-    linear-gradient(180deg,rgba(105,210,255,.32),rgba(105,210,255,.16),transparent 65%),
-    repeating-radial-gradient(circle at 50% 35%,rgba(120,220,255,.28) 0 2px,transparent 4px 45px);
-  mix-blend-mode:screen;
-  animation:cold 2.2s infinite;
-}
-.scene.active .particles{
-  opacity:.55;
-  background-image:
-    radial-gradient(circle,rgba(255,255,255,.7) 1px,transparent 2px),
-    radial-gradient(circle,rgba(138,232,225,.55) 1px,transparent 2px);
-  background-size:80px 80px,130px 130px;
-  animation:particles 7s linear infinite;
-}
-@keyframes pulse{
-  from{transform:scale(.7);opacity:.25}
-  50%{opacity:.9}
-  to{transform:scale(1.28);opacity:.15}
-}
-@keyframes cold{
-  0%,100%{filter:brightness(1);opacity:.5}
-  50%{filter:brightness(1.35);opacity:1}
-}
-@keyframes particles{
-  from{background-position:0 0,0 0}
-  to{background-position:0 -500px,120px -650px}
-}
-.scan{
-  position:absolute;
-  z-index:7;
-  left:0;
-  width:100%;
-  height:3px;
-  background:linear-gradient(90deg,transparent,#8ff3ff,transparent);
-  box-shadow:0 0 30px #8ff3ff;
-  animation:scan 3.5s linear infinite;
-  opacity:.8;
-}
-@keyframes scan{
-  from{top:0}
-  to{top:100%}
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>D-Cool | The Skin Reset Experience</title>
+  <style>
+    :root{
+      --bg:#05090d;
+      --panel:#0b141b;
+      --panel2:#101e27;
+      --text:#f5f7f8;
+      --muted:#b6c6ce;
+      --aqua:#85e3dd;
+      --blue:#79b9ff;
+      --gold:#f2c779;
+      --line:rgba(185,229,232,.18);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 20% 0%, rgba(43,121,140,.18), transparent 34%),
+        radial-gradient(circle at 100% 40%, rgba(122,82,32,.14), transparent 28%),
+        var(--bg);
+      font-family:Arial, Helvetica, sans-serif;
+      overflow-x:hidden;
+    }
+    .topbar{
+      position:fixed; inset:0 0 auto 0; z-index:50;
+      display:flex; justify-content:space-between; align-items:center;
+      padding:16px clamp(18px,4vw,56px);
+      background:linear-gradient(180deg,rgba(5,9,13,.92),rgba(5,9,13,.35),transparent);
+      pointer-events:none;
+    }
+    .brand{font-size:12px;letter-spacing:3px;font-weight:800}
+    .brand span{color:var(--aqua)}
+    .progress{width:min(190px,28vw);height:3px;background:rgba(255,255,255,.15);border-radius:99px;overflow:hidden}
+    .progress i{display:block;width:8%;height:100%;background:linear-gradient(90deg,var(--aqua),var(--blue));transition:.45s}
+    .deck{width:100%}
+    .slide{
+      min-height:100vh;
+      padding:clamp(90px,12vh,140px) clamp(20px,6vw,100px) clamp(70px,8vh,100px);
+      display:grid;
+      align-items:center;
+      position:relative;
+      overflow:hidden;
+      border-bottom:1px solid var(--line);
+    }
+    .slide::before{
+      content:"";
+      position:absolute; inset:0;
+      background:linear-gradient(90deg,rgba(4,8,12,.82),rgba(4,8,12,.25) 57%,rgba(4,8,12,.68));
+      z-index:1;
+      pointer-events:none;
+    }
+    .hero{
+      min-height:100vh;
+      text-align:center;
+      display:grid;
+      place-items:center;
+      padding:120px 20px 60px;
+    }
+    .hero::before{
+      background:radial-gradient(circle at center,rgba(7,22,29,.18),rgba(4,8,12,.82) 72%);
+    }
+    .hero-bg{
+      position:absolute; inset:0;
+      width:100%;height:100%;object-fit:cover;
+      opacity:.48; filter:saturate(.92) contrast(1.08);
+      transform:scale(1.07);
+      transition:transform 1.4s ease;
+    }
+    .hero:hover .hero-bg{transform:scale(1.13)}
+    .hero-content,.slide-content{position:relative;z-index:3}
+    .hero-content{max-width:900px}
+    .eyebrow{
+      color:var(--aqua); font-size:11px; letter-spacing:4px;
+      font-weight:800; text-transform:uppercase; margin-bottom:18px;
+    }
+    h1,h2,p{margin:0}
+    h1{
+      font-family:Georgia,serif;
+      font-size:clamp(48px,8vw,112px);
+      line-height:.91; letter-spacing:-3px;
+      text-shadow:0 10px 40px rgba(0,0,0,.6);
+    }
+    h1 em{font-style:normal;color:var(--aqua)}
+    .hero p{
+      max-width:650px;margin:24px auto 0;
+      color:#d2dde0;font-size:clamp(16px,2vw,21px);line-height:1.6;
+    }
+    .hero-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:30px}
+    button,.btn{
+      border:1px solid rgba(151,231,225,.5);
+      background:rgba(11,29,35,.78); color:white;
+      padding:13px 18px;border-radius:99px;
+      font-weight:800;letter-spacing:.7px;cursor:pointer;
+      transition:.25s; text-decoration:none;
+    }
+    button:hover,.btn:hover{transform:translateY(-2px);background:rgba(28,70,78,.92)}
+    .btn.primary{background:linear-gradient(90deg,#80ded7,#6ca8f0);color:#061014;border:0}
+    .scroll-note{margin-top:38px;font-size:11px;letter-spacing:3px;color:#b8cbd0}
+    .slide-grid{
+      width:min(1300px,100%);margin:auto;
+      display:grid;grid-template-columns:minmax(280px,.88fr) minmax(360px,1.12fr);
+      gap:clamp(30px,7vw,100px);align-items:center;
+    }
+    .slide.reverse .slide-grid{grid-template-columns:minmax(360px,1.12fr) minmax(280px,.88fr)}
+    .slide.reverse .copy{order:2}
+    .slide.reverse .visual{order:1}
+    .step{font-size:12px;letter-spacing:3px;color:var(--gold);font-weight:800;margin-bottom:18px}
+    h2{font-family:Georgia,serif;font-size:clamp(40px,5vw,76px);line-height:.95;letter-spacing:-2px}
+    h2 span{color:var(--aqua)}
+    .copy p{margin-top:22px;color:#d1dce0;font-size:clamp(16px,1.55vw,20px);line-height:1.65;max-width:590px}
+    .benefits{display:grid;gap:10px;margin-top:25px}
+    .benefit{border-left:2px solid var(--aqua);padding:9px 0 9px 15px;color:#dce9eb;font-size:14px}
+    .visual{
+      position:relative;min-height:520px;border-radius:28px;overflow:hidden;
+      border:1px solid rgba(161,225,227,.24);
+      box-shadow:0 28px 80px rgba(0,0,0,.5);
+      background:#071117;
+      transform:perspective(1000px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
+      transition:transform .15s linear;
+    }
+    .visual img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;transition:transform .35s ease}
+    .visual:hover img{transform:scale(1.05)}
+    .visual::after{
+      content:"";position:absolute;inset:0;
+      background:linear-gradient(130deg,rgba(132,238,232,.18),transparent 35%,transparent 68%,rgba(242,199,121,.13));
+      mix-blend-mode:screen;pointer-events:none;
+    }
+    .tag{
+      position:absolute;z-index:5;left:20px;bottom:20px;
+      padding:10px 13px;border:1px solid rgba(255,255,255,.24);
+      border-radius:10px;background:rgba(4,12,16,.72);backdrop-filter:blur(9px);
+      font-size:11px;letter-spacing:1.4px;font-weight:800;
+    }
+    .pulse,.cold,.steam{
+      position:absolute;inset:0;z-index:4;pointer-events:none;
+    }
+    .pulse{
+      background:repeating-radial-gradient(circle at 50% 42%,rgba(124,235,228,.34) 0 2px,transparent 3px 54px);
+      animation:pulse 3.6s infinite;
+      mix-blend-mode:screen;
+    }
+    .cold{
+      background:linear-gradient(180deg,rgba(120,210,255,.14),rgba(100,190,255,.34),transparent 72%);
+      animation:cold 2.8s ease-in-out infinite;
+      mix-blend-mode:screen;
+    }
+    .steam{
+      background:radial-gradient(ellipse at 20% 90%,rgba(255,255,255,.28),transparent 28%),
+                 radial-gradient(ellipse at 70% 90%,rgba(255,255,255,.19),transparent 33%);
+      filter:blur(14px);animation:steam 5s ease-in-out infinite;
+    }
+    @keyframes pulse{0%{transform:scale(.4);opacity:.05}50%{opacity:.65}100%{transform:scale(1.45);opacity:0}}
+    @keyframes cold{0%,100%{opacity:.25}50%{opacity:.9}}
+    @keyframes steam{0%,100%{transform:translateY(24px);opacity:.15}50%{transform:translateY(-35px);opacity:.7}}
+    .compare{
+      width:min(1320px,100%);margin:auto;position:relative;z-index:3;
+    }
+    .compare h2{text-align:center;margin-bottom:38px}
+    .compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .compare-card{
+      min-height:420px;border-radius:24px;overflow:hidden;position:relative;
+      border:1px solid rgba(172,231,233,.22);background:#091218;
+    }
+    .compare-card img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+    .compare-card strong{
+      position:absolute;z-index:2;top:18px;left:18px;padding:9px 12px;
+      background:rgba(3,9,12,.72);border-radius:8px;font-size:12px;letter-spacing:2px;
+    }
+    .final{min-height:100vh;text-align:center;display:grid;place-items:center}
+    .final .slide-content{max-width:900px}
+    .final h2{font-size:clamp(46px,7vw,92px)}
+    .final p{font-size:20px;line-height:1.65;color:#d2e0e2;margin:22px auto 30px;max-width:700px}
+    .final-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.43}
+    .final::before{background:radial-gradient(circle at center,rgba(7,29,34,.24),rgba(4,8,12,.88) 70%)}
+    .voice-status{
+      position:fixed;right:18px;bottom:18px;z-index:80;
+      font-size:11px;color:#cce6e5;background:rgba(7,18,23,.9);
+      border:1px solid rgba(137,228,220,.28);padding:10px 13px;border-radius:10px;
+      display:none;
+    }
+    @media(max-width:800px){
+      .slide-grid,.slide.reverse .slide-grid{grid-template-columns:1fr}
+      .slide.reverse .copy,.slide.reverse .visual{order:initial}
+      .visual{min-height:390px}
+      .compare-grid{grid-template-columns:1fr}
+      .compare-card{min-height:310px}
+    }
+  </style>
 </head>
-
 <body>
+  <header class="topbar">
+    <div class="brand">D-COOL <span>•</span> SKIN RESET</div>
+    <div class="progress"><i id="progressBar"></i></div>
+  </header>
 
-<div id="app">
-  <div class="play" id="play">
-    <div>
-      <h2>Skin Reset<br>3D Experience</h2>
-      <p>Press play to watch the treatment like a cinematic 3D presentation with narration.</p>
-      <button onclick="startVideo()">PLAY CINEMATIC TREATMENT</button>
-    </div>
-  </div>
+  <div class="voice-status" id="voiceStatus">Narration activated</div>
 
-  <div class="dark"></div>
+  <main class="deck">
 
-  <div class="copy">
-    <div class="kicker" id="kicker"></div>
-    <h1 id="title"></h1>
-    <p id="desc"></p>
-  </div>
+    <section class="slide hero" data-voice="Welcome to the D-Cool Skin Reset experience. A professional sequence designed to cleanse, renew, refine texture, and finish with a cooling skin-reset protocol.">
+      <img class="hero-bg" src="after-d-cool-and-whole-treatment.png" alt="Final skin treatment result">
+      <div class="hero-content">
+        <div class="eyebrow">D-COOL • HYDROFACIAL • POLLAGEN</div>
+        <h1>Reset the skin.<br><em>Reveal the glow.</em></h1>
+        <p>A visual journey through deep cleansing, skin renewal, collagen-focused care, heat activation, and cooling recovery.</p>
+        <div class="hero-actions">
+          <button class="btn primary" id="voiceBtn">Activate narration</button>
+          <a class="btn" href="#step1">Start experience</a>
+        </div>
+        <div class="scroll-note">SCROLL TO ENTER THE TREATMENT</div>
+      </div>
+    </section>
 
-  <button class="skip" onclick="nextScene()">Next</button>
-  <div class="progress" id="progress"></div>
-</div>
+    <section class="slide" id="step1" data-voice="Step one. We begin by revealing what sits inside the pore: excess oil, buildup, and impurities that can leave the skin looking congested and uneven.">
+      <div class="slide-grid">
+        <div class="copy slide-content">
+          <div class="step">01 / SKIN ANALYSIS</div>
+          <h2>What the eye <span>cannot see.</span></h2>
+          <p>Congestion does not only sit on the surface. Oil, debris and buildup can remain inside the pore, affecting clarity, texture and the way skin reflects light.</p>
+          <div class="benefits">
+            <div class="benefit">Targets visible congestion and dull-looking texture</div>
+            <div class="benefit">Prepares the skin for a more effective treatment sequence</div>
+          </div>
+        </div>
+        <div class="visual" data-tilt>
+          <img src="piel-sucia.png" alt="Skin pore before cleansing">
+          <div class="tag">BEFORE • CONGESTED PORE</div>
+        </div>
+      </div>
+    </section>
 
-<script>
-const scenes = [
-  {
-    img:"piel-sucia.png",
-    kicker:"Microscopic Skin Reality",
-    title:"What is Demodex?",
-    desc:"Demodex is a microscopic mite that can live naturally inside facial follicles. The goal of this facial is not to promise total eradication, but to deeply cleanse oil, buildup and surface residue while improving the look of texture and radiance.",
-    voice:"Demodex is a microscopic mite that can live naturally inside facial follicles. This protocol is designed to deeply cleanse oil, buildup and surface residue, while improving the look of skin texture and radiance.",
-    fx:"particles",
-    time:10000
-  },
-  {
-    img:"piel-sucia.png",
-    kicker:"Step One",
-    title:"Before the Facial",
-    desc:"The pore may appear congested with oil, dead skin buildup and visible residue. This is why a regular facial is often not enough for skin that looks dull, rough or blocked.",
-    voice:"Before the facial, the pore may appear congested with oil, dead skin buildup and visible residue. This is why a deeper protocol can help the skin look clearer and more refined.",
-    fx:"scan",
-    time:8500
-  },
-  {
-    img:"ozono.png",
-    kicker:"Step Two",
-    title:"Ozone Steam + Salicylic Acid",
-    desc:"Warm steam helps soften the surface while salicylic acid supports the removal of oil buildup and prepares the pore for extraction.",
-    voice:"The treatment begins with ozone steam and salicylic acid. Warm steam helps soften the surface while salicylic acid supports the removal of oil buildup and prepares the pore for extraction.",
-    fx:"steam",
-    time:8500
-  },
-  {
-    img:"hydrofacial.png",
-    kicker:"Step Three",
-    title:"Hydrofacial Deep Cleansing",
-    desc:"Hydro-suction helps lift softened debris, oil and impurities from the pore while bathing the skin with a refreshing cleansing flow.",
-    voice:"Next is Hydrofacial deep cleansing. Hydro suction helps lift softened debris, oil and impurities from the pore while refreshing the skin.",
-    fx:"suction",
-    time:8500
-  },
-  {
-    img:"desp-de-hydrofacial.png",
-    kicker:"Step Four",
-    title:"After Hydrofacial",
-    desc:"The pore now looks cleaner and less congested. The skin is prepared for renewal ingredients and device-based finishing.",
-    voice:"After Hydrofacial, the pore looks cleaner and less congested. The skin is now prepared for renewal ingredients and device based finishing.",
-    fx:"particles",
-    time:7500
-  },
-  {
-    img:"pollagen-antes.png",
-    kicker:"Step Five",
-    title:"Why Pollagen Comes Next",
-    desc:"Even after cleansing, skin can still show texture, visible pores, fine lines and loss of firmness. Pollagen supports a smoother, more conditioned appearance.",
-    voice:"Even after cleansing, skin can still show texture, visible pores, fine lines and loss of firmness. Pollagen supports a smoother, more conditioned appearance.",
-    fx:"scan",
-    time:8500
-  },
-  {
-    img:"desp-pollagen.png",
-    kicker:"Step Six",
-    title:"Pollagen Renewal",
-    desc:"This stage supports the look of firmer, more refined skin, helping the surface appear more polished before the D-Cool phase.",
-    voice:"Pollagen renewal supports the look of firmer, more refined skin, helping the surface appear more polished before the D Cool phase.",
-    fx:"heat",
-    time:8500
-  },
-  {
-    img:"d-cool-during-hot.png",
-    kicker:"Step Seven",
-    title:"D-Cool Hot Handle",
-    desc:"The hot handle creates a warming activation phase. PRP growth factors, niacinamide and active serums are used topically to support a rejuvenated-looking finish.",
-    voice:"D Cool begins with the hot handle. This warming activation phase is paired with topical PRP growth factors, niacinamide and active serums to support a rejuvenated looking finish.",
-    fx:"heat",
-    time:9500
-  },
-  {
-    img:"d-cool-during-could.png",
-    kicker:"Step Eight",
-    title:"D-Cool Cold Handle + Aloe",
-    desc:"The cold handle finishes the protocol with aloe hydration, a cooling sensation and a calmer-looking surface.",
-    voice:"The cold handle finishes the protocol with aloe hydration, a cooling sensation and a calmer looking surface.",
-    fx:"cold",
-    time:8500
-  },
-  {
-    img:"after-d-cool-and-whole-treatment.png",
-    kicker:"Final Result",
-    title:"Clean. Calm. Rejuvenated.",
-    desc:"The final look is a cleaner pore environment, softer-looking texture, improved hydration, refined appearance and a healthy glow.",
-    voice:"The final result is a cleaner pore environment, softer looking texture, improved hydration, refined appearance and a healthy glow.",
-    fx:"particles",
-    time:8500
-  },
-  {
-    img:"beforeandafter2.png",
-    kicker:"3D Skin Analysis",
-    title:"Surface Texture Before & After",
-    desc:"This conceptual 3D scan shows how roughness and pore depth can visually improve after the full facial sequence.",
-    voice:"This 3D visualization shows how roughness and pore depth can visually improve after the full facial sequence.",
-    fx:"scan",
-    time:8500
-  },
-  {
-    img:"beforeandafter3.png",
-    kicker:"Final 3D Scan",
-    title:"Pore Depth Visualization",
-    desc:"The surface appears more even, smoother and less congested — the visual goal of the complete Skin Reset experience.",
-    voice:"The surface appears more even, smoother and less congested. This is the visual goal of the complete Skin Reset experience.",
-    fx:"scan",
-    time:8500
-  },
-  {
-    img:"whole-treatment-after.png",
-    kicker:"Book The Experience",
-    title:"This is not a basic facial.",
-    desc:"This is a complete skin reset: cleanse, extract, renew, activate, cool and glow.",
-    voice:"This is not a basic facial. This is a complete skin reset. Cleanse, extract, renew, activate, cool and glow.",
-    fx:"particles",
-    time:9000
-  }
-];
+    <section class="slide reverse" data-voice="Step two. Hydrofacial cleansing uses controlled fluid and suction to lift surface buildup while refreshing the skin.">
+      <div class="slide-grid">
+        <div class="copy slide-content">
+          <div class="step">02 / HYDROFACIAL</div>
+          <h2>Cleanse.<br><span>Lift. Refresh.</span></h2>
+          <p>The Hydrofacial stage focuses on deep surface cleansing and extraction. It helps remove visible debris while hydrating the skin for a cleaner, fresher-looking finish.</p>
+          <div class="benefits">
+            <div class="benefit">Water-based cleansing with controlled suction</div>
+            <div class="benefit">Helps improve the look of pores and surface texture</div>
+          </div>
+        </div>
+        <div class="visual" data-tilt>
+          <img src="hydrofacial.png" alt="Hydrofacial cleansing process">
+          <div class="steam"></div>
+          <div class="tag">HYDROFACIAL • CLEANSE + EXTRACT</div>
+        </div>
+      </div>
+    </section>
 
-const app = document.getElementById("app");
-const kicker = document.getElementById("kicker");
-const title = document.getElementById("title");
-const desc = document.getElementById("desc");
-const progress = document.getElementById("progress");
-const play = document.getElementById("play");
+    <section class="slide" data-voice="After cleansing, the skin looks clearer and more prepared. This is the clean canvas needed for the next stages.">
+      <div class="slide-grid">
+        <div class="copy slide-content">
+          <div class="step">03 / CLEAN CANVAS</div>
+          <h2>Clarity begins<br><span>inside the pore.</span></h2>
+          <p>Once buildup is lifted, the skin is better prepared for the treatment steps that follow. The goal is not simply to cleanse, but to create a visibly fresher foundation.</p>
+          <div class="benefits">
+            <div class="benefit">Cleaner-looking pore environment</div>
+            <div class="benefit">A smoother visual base for subsequent care</div>
+          </div>
+        </div>
+        <div class="visual" data-tilt>
+          <img src="desp-de-hydrofacial.png" alt="Skin after Hydrofacial">
+          <div class="pulse"></div>
+          <div class="tag">AFTER HYDROFACIAL • REFINED LOOK</div>
+        </div>
+      </div>
+    </section>
 
-let current = 0;
-let timer = null;
-let running = false;
+    <section class="slide reverse" data-voice="Step four. Ozone care is used as a refreshing support stage after cleansing, helping create a clean, balanced feeling on the skin.">
+      <div class="slide-grid">
+        <div class="copy slide-content">
+          <div class="step">04 / OZONE CARE</div>
+          <h2>Freshness with<br><span>a clean finish.</span></h2>
+          <p>This stage is designed to complement the cleansing sequence with a purified, refreshed sensation before moving into skin-renewal care.</p>
+          <div class="benefits">
+            <div class="benefit">A refreshing post-cleansing support step</div>
+            <div class="benefit">Designed to leave the skin feeling clean and balanced</div>
+          </div>
+        </div>
+        <div class="visual" data-tilt>
+          <img src="ozono.png" alt="Ozone skin care process">
+          <div class="pulse"></div>
+          <div class="tag">OZONE • REFRESH + BALANCE</div>
+        </div>
+      </div>
+    </section>
 
-scenes.forEach((s,i)=>{
-  const div = document.createElement("div");
-  div.className = "scene" + (i===0 ? " active" : "");
-  div.innerHTML = `
-    <img src="${s.img}" alt="">
-    <div class="effect ${s.fx || ""}"></div>
-    ${s.fx === "scan" ? '<div class="scan"></div>' : ''}
-  `;
-  app.prepend(div);
-});
+    <section class="slide" data-voice="Step five. We look at texture before Pollagen. Fine lines, uneven surface, and loss of firmness can make the skin look tired even when it is clean.">
+      <div class="slide-grid">
+        <div class="copy slide-content">
+          <div class="step">05 / POLLAGEN PREP</div>
+          <h2>When texture needs<br><span>more than cleansing.</span></h2>
+          <p>Clean skin can still show uneven texture, visible pores and early signs of loss of firmness. This is where the renewal-focused phase begins.</p>
+          <div class="benefits">
+            <div class="benefit">Focuses on the appearance of texture and firmness</div>
+            <div class="benefit">Complements the deep-cleansing stages</div>
+          </div>
+        </div>
+        <div class="visual" data-tilt>
+          <img src="pollagen-antes.png" alt="Skin before Pollagen treatment">
+          <div class="tag">BEFORE POLLAGEN • TEXTURE + FIRMNESS</div>
+        </div>
+      </div>
+    </section>
 
-const sceneEls = [...document.querySelectorAll(".scene")];
+    <section class="slide reverse" data-voice="After the Pollagen stage, the visual goal is smoother-looking texture, a more refined surface, and a renewed glow.">
+      <div class="slide-grid">
+        <div class="copy slide-content">
+          <div class="step">06 / POLLAGEN RESULT</div>
+          <h2>Texture looks<br><span>more refined.</span></h2>
+          <p>Pollagen is presented as the renewal stage of the experience: supporting a smoother-looking surface and a more polished, luminous appearance.</p>
+          <div class="benefits">
+            <div class="benefit">Helps support the look of smoother skin texture</div>
+            <div class="benefit">Designed for a more renewed, radiant finish</div>
+          </div>
+        </div>
+        <div class="visual" data-tilt>
+          <img src="desp-pollagen.png" alt="Skin after Pollagen treatment">
+          <div class="pulse"></div>
+          <div class="tag">AFTER POLLAGEN • RENEWED LOOK</div>
+        </div>
+      </div>
+    </section>
 
-function speak(text){
-  speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(text);
-  u.lang = "en-US";
-  u.rate = .88;
-  u.pitch = 1;
-  speechSynthesis.speak(u);
-}
+    <section class="slide" data-voice="Step seven. D-Cool begins with a warming phase. Controlled heat is used as part of the treatment sequence before the cooling finish.">
+      <div class="slide-grid">
+        <div class="copy slide-content">
+          <div class="step">07 / D-COOL HEAT</div>
+          <h2>Warmth that<br><span>activates.</span></h2>
+          <p>The warming phase is designed as an activation moment within the D-Cool protocol, preparing the skin for the transition into the cooling stage.</p>
+          <div class="benefits">
+            <div class="benefit">Heat-focused phase within the D-Cool sequence</div>
+            <div class="benefit">Creates a transition toward the cooling finish</div>
+          </div>
+        </div>
+        <div class="visual" data-tilt>
+          <img src="d-cool-during-hot.png" alt="D-Cool heat treatment">
+          <div class="pulse"></div>
+          <div class="tag">D-COOL • HEAT ACTIVATION</div>
+        </div>
+      </div>
+    </section>
 
-function showScene(i){
-  current = i;
-  sceneEls.forEach(el=>el.classList.remove("active"));
-  sceneEls[i].classList.add("active");
+    <section class="slide reverse" data-voice="Then comes the cooling phase. The contrast of cool sensation is designed to finish the sequence with a fresh, calming skin reset.">
+      <div class="slide-grid">
+        <div class="copy slide-content">
+          <div class="step">08 / D-COOL COLD</div>
+          <h2>Cool down.<br><span>Reset the glow.</span></h2>
+          <p>The cooling phase completes the D-Cool experience with a visibly fresh, revitalized finish that feels as good as it looks.</p>
+          <div class="benefits">
+            <div class="benefit">Cooling finish for a refreshed treatment experience</div>
+            <div class="benefit">A final reset designed around comfort and glow</div>
+          </div>
+        </div>
+        <div class="visual" data-tilt>
+          <img src="d-cool-during-could.png" alt="D-Cool cooling treatment">
+          <div class="cold"></div>
+          <div class="tag">D-COOL • COOLING RESET</div>
+        </div>
+      </div>
+    </section>
 
-  kicker.textContent = scenes[i].kicker;
-  title.textContent = scenes[i].title;
-  desc.textContent = scenes[i].desc;
-  progress.style.width = ((i+1)/scenes.length*100) + "%";
+    <section class="slide" data-voice="The difference is not one step. It is the sequence: cleanse, refresh, renew, activate, cool, and reveal a more polished-looking result.">
+      <div class="compare">
+        <div class="step" style="text-align:center">THE TRANSFORMATION</div>
+        <h2>From visible texture<br>to a <span>refined-looking finish.</span></h2>
+        <div class="compare-grid">
+          <div class="compare-card">
+            <img src="beforeandafter2.png" alt="Before and after skin texture comparison">
+            <strong>TEXTURE COMPARISON</strong>
+          </div>
+          <div class="compare-card">
+            <img src="beforeandafter3.png" alt="Before and after skin surface comparison">
+            <strong>SURFACE COMPARISON</strong>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  if(running) speak(scenes[i].voice);
+    <section class="slide final" data-voice="This is the D-Cool Skin Reset experience. A complete visual journey from deep cleansing to a fresher, smoother-looking, radiant finish.">
+      <img class="final-bg" src="whole-treatment-after.png" alt="Whole treatment final result">
+      <div class="slide-content">
+        <div class="eyebrow">THE COMPLETE EXPERIENCE</div>
+        <h2>Not just a facial.<br><span>A skin reset.</span></h2>
+        <p>Hydrofacial cleansing, ozone care, Pollagen renewal and D-Cool hot-and-cold finishing—built into one complete treatment experience.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="https://wa.me/17866900960?text=Hi%20D%27Royal%20Spa%2C%20I%20want%20information%20about%20the%20D-Cool%20Skin%20Reset%20treatment." target="_blank">Book your skin reset</a>
+          <button class="btn" id="replayBtn">Replay presentation</button>
+        </div>
+      </div>
+    </section>
+  </main>
 
-  clearTimeout(timer);
-  timer = setTimeout(nextScene, scenes[i].time);
-}
+  <script>
+    const slides = [...document.querySelectorAll('.slide')];
+    const progressBar = document.getElementById('progressBar');
+    const voiceBtn = document.getElementById('voiceBtn');
+    const replayBtn = document.getElementById('replayBtn');
+    const voiceStatus = document.getElementById('voiceStatus');
+    let narrationOn = false;
+    let currentSpoken = -1;
 
-function nextScene(){
-  let next = current + 1;
-  if(next >= scenes.length) next = 0;
-  showScene(next);
-}
+    function speak(text){
+      if(!narrationOn || !('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      const msg = new SpeechSynthesisUtterance(text);
+      msg.lang = 'en-US';
+      msg.rate = .94;
+      msg.pitch = 1;
+      window.speechSynthesis.speak(msg);
+    }
 
-function startVideo(){
-  running = true;
-  play.style.display = "none";
-  showScene(0);
-}
+    voiceBtn.addEventListener('click', () => {
+      narrationOn = true;
+      voiceStatus.style.display = 'block';
+      voiceBtn.textContent = 'Narration on';
+      speak(slides[0].dataset.voice);
+      setTimeout(() => voiceStatus.style.display = 'none', 2400);
+    });
 
-showScene(0);
-</script>
+    replayBtn.addEventListener('click', () => {
+      window.scrollTo({top:0, behavior:'smooth'});
+      currentSpoken = -1;
+      if(narrationOn) setTimeout(() => speak(slides[0].dataset.voice), 700);
+    });
 
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting && entry.intersectionRatio > .58){
+          const index = slides.indexOf(entry.target);
+          if(index !== currentSpoken){
+            currentSpoken = index;
+            speak(entry.target.dataset.voice || '');
+            progressBar.style.width = `${Math.max(8, ((index + 1) / slides.length) * 100)}%`;
+          }
+        }
+      });
+    }, {threshold:[.58]});
+
+    slides.forEach(slide => observer.observe(slide));
+
+    document.querySelectorAll('[data-tilt]').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const r = card.getBoundingClientRect();
+        const x = (e.clientX-r.left)/r.width-.5;
+        const y = (e.clientY-r.top)/r.height-.5;
+        card.style.setProperty('--ry', `${x*7}deg`);
+        card.style.setProperty('--rx', `${-y*7}deg`);
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.setProperty('--ry','0deg');
+        card.style.setProperty('--rx','0deg');
+      });
+    });
+  </script>
 </body>
 </html>
