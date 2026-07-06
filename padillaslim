@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Padilla Slim 3D Facial Protocol</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:#030405;
+  color:white;
+  font-family:Arial, Helvetica, sans-serif;
+  overflow:hidden;
+}
+.app{
+  width:100vw;
+  height:100vh;
+  position:relative;
+  background:#030405;
+}
+.scene{
+  position:absolute;
+  inset:0;
+  opacity:0;
+  transition:opacity 1s ease;
+  overflow:hidden;
+}
+.scene.active{opacity:1;z-index:2}
+.scene img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transform:scale(1.08);
+  transition:transform 8s ease;
+}
+.scene.active img{
+  transform:scale(1);
+}
+.overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.78),rgba(0,0,0,.16),rgba(0,0,0,.08));
+  z-index:5;
+}
+.text{
+  position:absolute;
+  left:6%;
+  bottom:10%;
+  max-width:760px;
+  z-index:10;
+}
+.step{
+  color:#d8b36a;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  font-size:13px;
+  margin-bottom:12px;
+}
+h1{
+  font-size:clamp(34px,6vw,78px);
+  line-height:.95;
+  margin:0 0 16px;
+}
+p{
+  font-size:clamp(16px,2vw,23px);
+  line-height:1.45;
+  color:rgba(255,255,255,.84);
+  margin:0;
+}
+.controls{
+  position:absolute;
+  right:24px;
+  bottom:24px;
+  z-index:20;
+  display:flex;
+  gap:10px;
+}
+button{
+  border:1px solid rgba(255,255,255,.35);
+  background:rgba(255,255,255,.12);
+  color:white;
+  padding:12px 18px;
+  border-radius:999px;
+  cursor:pointer;
+  backdrop-filter:blur(10px);
+}
+button:hover{background:rgba(255,255,255,.25)}
+.progress{
+  position:absolute;
+  left:0;
+  bottom:0;
+  height:4px;
+  background:#d8b36a;
+  width:0%;
+  z-index:30;
+  transition:width .4s ease;
+}
+.light{
+  position:absolute;
+  inset:-20%;
+  background:radial-gradient(circle at var(--x,50%) var(--y,50%),rgba(255,255,255,.18),transparent 34%);
+  mix-blend-mode:screen;
+  z-index:6;
+  pointer-events:none;
+}
+.particles{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:7;
+  background-image:
+    radial-gradient(circle,rgba(255,255,255,.35) 1px,transparent 2px),
+    radial-gradient(circle,rgba(112,210,255,.25) 1px,transparent 2px);
+  background-size:80px 80px,120px 120px;
+  animation:float 7s linear infinite;
+  opacity:.28;
+}
+@keyframes float{
+  from{background-position:0 0,0 0}
+  to{background-position:0 -400px,120px -500px}
+}
+@media(max-width:700px){
+  .text{left:22px;right:22px;bottom:95px}
+  .controls{left:22px;right:auto}
+}
+</style>
+</head>
+
+<body>
+
+<div class="app" id="app">
+  <div class="overlay"></div>
+  <div class="light" id="light"></div>
+  <div class="particles"></div>
+
+  <div class="text">
+    <div class="step" id="step"></div>
+    <h1 id="title"></h1>
+    <p id="desc"></p>
+  </div>
+
+  <div class="controls">
+    <button onclick="prev()">Back</button>
+    <button onclick="next()">Next</button>
+    <button onclick="toggleVoice()">Voice</button>
+  </div>
+
+  <div class="progress" id="progress"></div>
+</div>
+
+<script>
+const slides = [
+  {
+    img:"piel-sucia(1).png",
+    step:"Step 1",
+    title:"Before the Facial",
+    desc:"Congested pores, buildup, excess sebum and visible follicle activity before the deep cleansing protocol begins."
+  },
+  {
+    img:"ozono(1).png",
+    step:"Step 2",
+    title:"Ozone Steam + Salicylic Acid",
+    desc:"The skin is softened and prepared while superficial buildup begins to loosen."
+  },
+  {
+    img:"hydrofacial(1).png",
+    step:"Step 3",
+    title:"Hydrofacial Deep Cleansing",
+    desc:"Hydro-suction helps remove softened debris, oil and impurities from the pore."
+  },
+  {
+    img:"desp-de-hydrofacial(1).png",
+    step:"Step 4",
+    title:"After Hydrofacial",
+    desc:"The follicle appears cleaner, less congested and ready for advanced active ingredients."
+  },
+  {
+    img:"pollagen-antes(1).png",
+    step:"Step 5",
+    title:"Pollagen Tripollar RF",
+    desc:"Controlled energy supports collagen structure, skin firmness and smoother-looking texture."
+  },
+  {
+    img:"desp-pollagen.png",
+    step:"Step 6",
+    title:"After Pollagen",
+    desc:"The skin appears more supported, smoother and prepared for the D-Cool phase."
+  },
+  {
+    img:"d-cool-during-hot.png",
+    step:"Step 7",
+    title:"D-Cool Hot Handle",
+    desc:"Needle-free electroporation supports topical delivery of PRP growth factors and active serums."
+  },
+  {
+    img:"d-cool-during-could.png",
+    step:"Step 8",
+    title:"D-Cool Cold Handle",
+    desc:"Cooling with aloe helps calm the skin, hydrate and reduce the appearance of redness."
+  },
+  {
+    img:"after-d-cool-and-whole-treatment.png",
+    step:"Step 9",
+    title:"After the Full Treatment",
+    desc:"The skin appears cleaner, calmer, more hydrated and visibly smoother."
+  },
+  {
+    img:"after-d-cool-and-whole-treatment(1).png",
+    step:"Final Angle",
+    title:"Rejuvenated Skin View",
+    desc:"A second angle showing a calmer, smoother and more hydrated skin appearance after the complete protocol."
+  },
+  {
+    img:"beforeandafter2(1).png",
+    step:"3D Analysis",
+    title:"Before & After Texture",
+    desc:"A conceptual 3D visualization of pore depth and skin texture before and after the complete facial protocol."
+  },
+  {
+    img:"beforeandafter3(1).png",
+    step:"3D Scan View",
+    title:"Pore Depth Visualization",
+    desc:"The surface appears more even, with pores visually refined after the complete treatment."
+  }
+];
+
+const app = document.getElementById("app");
+const step = document.getElementById("step");
+const title = document.getElementById("title");
+const desc = document.getElementById("desc");
+const progress = document.getElementById("progress");
+const light = document.getElementById("light");
+
+let current = 0;
+let voice = false;
+
+slides.forEach((s,i)=>{
+  const div=document.createElement("div");
+  div.className="scene"+(i===0?" active":"");
+  div.innerHTML=`<img src="${s.img}" alt="${s.title}">`;
+  app.prepend(div);
+});
+
+const scenes=document.querySelectorAll(".scene");
+
+function show(i){
+  scenes.forEach(s=>s.classList.remove("active"));
+  scenes[i].classList.add("active");
+  step.textContent=slides[i].step;
+  title.textContent=slides[i].title;
+  desc.textContent=slides[i].desc;
+  progress.style.width=((i+1)/slides.length*100)+"%";
+  if(voice) speak(slides[i].title+". "+slides[i].desc);
+}
+
+function next(){
+  current=(current+1)%slides.length;
+  show(current);
+}
+
+function prev(){
+  current=(current-1+slides.length)%slides.length;
+  show(current);
+}
+
+function speak(text){
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang="en-US";
+  u.rate=.9;
+  speechSynthesis.speak(u);
+}
+
+function toggleVoice(){
+  voice=!voice;
+  if(voice) speak(slides[current].title+". "+slides[current].desc);
+  else speechSynthesis.cancel();
+}
+
+document.addEventListener("mousemove",e=>{
+  const x=(e.clientX/window.innerWidth)*100;
+  const y=(e.clientY/window.innerHeight)*100;
+  light.style.setProperty("--x",x+"%");
+  light.style.setProperty("--y",y+"%");
+  const img=scenes[current].querySelector("img");
+  img.style.transform=`scale(1.04) translate(${(x-50)*-0.12}px, ${(y-50)*-0.12}px)`;
+});
+
+show(0);
+setInterval(next,7000);
+</script>
+
+</body>
+</html>
