@@ -1,167 +1,177 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>D-Cool | Ultimate 3D Skin Reset Experience</title>
-  <style>
-    :root {
-      --bg: #05090d;
-      --panel: rgba(11, 20, 27, 0.75);
-      --panel-border: rgba(133, 227, 221, 0.2);
-      --text: #f5f7f8;
-      --muted: #b6c6ce;
-      --aqua: #85e3dd;
-      --blue: #79b9ff;
-      --gold: #f2c779;
-      --purple: #b38eff;
-      --line: rgba(185, 229, 232, .15);
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      color: var(--text);
-      background: 
-        radial-gradient(circle at 15% 15%, rgba(43, 121, 140, 0.2), transparent 35%),
-        radial-gradient(circle at 85% 85%, rgba(122, 82, 32, 0.12), transparent 30%),
-        var(--bg);
-      font-family: Arial, Helvetica, sans-serif;
-      overflow-x: hidden;
-    }
-    .topbar {
-      position: fixed; inset: 0 0 auto 0; z-index: 100;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 16px clamp(18px, 4vw, 56px);
-      background: linear-gradient(180deg, rgba(5,9,13,.95), rgba(5,9,13,.4), transparent);
-      pointer-events: none;
-    }
-    .brand { font-size: 12px; letter-spacing: 3px; font-weight: 800; pointer-events: auto; }
-    .brand span { color: var(--aqua); }
-    .progress { width: min(190px, 28vw); height: 3px; background: rgba(255, 255, 255, .15); border-radius: 99px; overflow: hidden; }
-    .progress i { display: block; width: 0%; height: 100%; background: linear-gradient(90deg, var(--aqua), var(--blue)); transition: width 0.1s linear; }
-    
-    .deck { width: 100%; }
-    .slide {
-      min-height: 100vh;
-      padding: clamp(90px, 12vh, 140px) clamp(20px, 6vw, 100px) clamp(70px, 8vh, 100px);
-      display: grid;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-      border-bottom: 1px solid var(--line);
-    }
-    .slide::before {
-      content: ""; position: absolute; inset: 0;
-      background: linear-gradient(90deg, rgba(4,8,12,.85) 0%, rgba(4,8,12,.2) 50%, rgba(4,8,12,.85) 100%);
-      z-index: 2; pointer-events: none;
-    }
-    
-    .hero { min-height: 100vh; text-align: center; display: grid; place-items: center; padding: 120px 20px 60px; }
-    .hero::before { background: radial-gradient(circle at center, rgba(7, 22, 29, .2), rgba(4, 8, 12, .85) 75%); }
-    .hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .45; transform: scale(1.05); transition: transform 1.5s ease; }
-    .hero:hover .hero-bg { transform: scale(1.1); }
-    .hero-content, .slide-content { position: relative; z-index: 10; }
-    .hero-content { max-width: 900px; }
-    
-    .eyebrow { color: var(--aqua); font-size: 11px; letter-spacing: 4px; font-weight: 800; text-transform: uppercase; margin-bottom: 18px; }
-    h1, h2, p { margin: 0; }
-    h1 { font-family: Georgia, serif; font-size: clamp(48px, 8vw, 112px); line-height: .91; letter-spacing: -3px; text-shadow: 0 10px 40px rgba(0,0,0,.6); }
-    h1 em { font-style: normal; color: var(--aqua); }
-    .hero p { max-width: 650px; margin: 24px auto 0; color: #d2dde0; font-size: clamp(16px, 2vw, 21px); line-height: 1.6; }
-    
-    .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 30px; }
-    button, .btn { border: 1px solid rgba(151, 231, 225, .5); background: rgba(11, 29, 35, .78); color: white; padding: 13px 18px; border-radius: 99px; font-weight: 800; letter-spacing: .7px; cursor: pointer; transition: .25s; text-decoration: none; display: inline-flex; align-items: center; }
-    button:hover, .btn:hover { transform: translateY(-2px); background: rgba(28, 70, 78, .92); box-shadow: 0 10px 20px rgba(133,227,221,0.15); }
-    .btn.primary { background: linear-gradient(90deg, #80ded7, #6ca8f0); color: #061014; border: 0; }
-    .scroll-note { margin-top: 38px; font-size: 11px; letter-spacing: 3px; color: #b8cbd0; }
+    <!-- SLIDE 02: OZONO (CAMBIO DE ORDEN SUGERIDO PARA SEGUIR TU LISTA) -->
+    <section class="slide reverse" data-voice="Step two. Ozone care is used as a refreshing support stage after cleansing, helping create a clean, balanced feeling on the skin.">
+      <div class="slide-grid">
+        <div class="copy slide-content">
+          <div class="step">02 / OZONE CARE</div>
+          <h2>Freshness with<br><span>a clean finish.</span></h2>
+          <p>This stage is designed to complement the cleansing sequence with a purified, refreshed sensation before moving into skin-renewal care.</p>
+          <div class="benefits">
+            <div class="benefit">A refreshing post-cleansing support step</div>
+            <div class="benefit">Designed to leave the skin feeling clean and balanced</div>
+          </div>
+        </div>
+        <div class="visual" data-tilt>
+          <img src="ozono.png" alt="Ozone skin care process">
+          <div class="ozone-ray"></div>
+          <!-- Se activa el cabezal de Ozono con destello violeta -->
+          <div class="handle-device h-ozone"></div>
+          <div class="tag">OZONE • REFRESH + BALANCE</div>
+        </div>
+      </div>
+    </section>
 
-    .slide-grid {
-      width: min(1300px, 100%); margin: auto;
-      display: grid; grid-template-columns: minmax(280px, .88fr) minmax(360px, 1.12fr);
-      gap: clamp(30px, 7vw, 100px); align-items: center;
-    }
-    .slide.reverse .slide-grid { grid-template-columns: minmax(360px, 1.12fr) minmax(280px, .88fr); }
-    .slide.reverse .copy { order: 2; }
-    .slide.reverse .visual { order: 1; }
-    
-    .step { font-size: 12px; letter-spacing: 3px; color: var(--gold); font-weight: 800; margin-bottom: 18px; }
-    h2 { font-family: Georgia, serif; font-size: clamp(40px, 5vw, 76px); line-height: .95; letter-spacing: -2px; }
-    h2 span { color: var(--aqua); }
-    .copy p { margin-top: 22px; color: #d1dce0; font-size: clamp(16px, 1.55vw, 20px); line-height: 1.65; max-width: 590px; }
-    .benefits { display: grid; gap: 10px; margin-top: 25px; }
-    .benefit { border-left: 2px solid var(--aqua); padding: 9px 0 9px 15px; color: #dce9eb; font-size: 14px; }
+    <!-- SLIDE 03: HYDROFACIAL -->
+    <section class="slide" data-voice="Step three. Hydrofacial cleansing uses controlled fluid and suction to lift surface buildup while refreshing the skin.">
+      <div class="slide-grid">
+        <div class="copy slide-content">
+          <div class="step">03 / HYDROFACIAL</div>
+          <h2>Cleanse.<br><span>Lift. Refresh.</span></h2>
+          <p>The Hydrofacial stage focuses on deep surface cleansing and extraction. It helps remove visible debris while hydrating the skin for a cleaner, fresher-looking finish.</p>
+          <div class="benefits">
+            <div class="benefit">Water-based cleansing with controlled suction</div>
+            <div class="benefit">Helps improve the look of pores and surface texture</div>
+          </div>
+        </div>
+        <div class="visual" data-tilt>
+          <img src="hydrofacial.png" alt="Hydrofacial cleansing process">
+          <div class="steam"></div>
+          <!-- Entra el manípulo de succión vortex -->
+          <div class="handle-device h-hydro"></div>
+          <div class="tag">HYDROFACIAL • CLEANSE + EXTRACT</div>
+        </div>
+      </div>
+    </section>
 
-    /* CONTENEDOR VISUAL CON SUB-CÁMARA INTERACTIVA 3D */
-    .visual {
-      position: relative; min-height: 520px; border-radius: 28px; overflow: hidden;
-      border: 1px solid rgba(161, 225, 227, .24);
-      box-shadow: 0 28px 80px rgba(0,0,0,.5);
-      background: #071117;
-      /* Animación por hardware controlada por JS a través de variables CSS */
-      transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) scale(var(--v-scale, 1)) translate3d(var(--v-tx, 0px), var(--v-ty, 0px), 0);
-      transition: transform 0.1s ease-out;
-      z-index: 3;
-    }
-    .visual img { width: 100%; height: 100%; position: absolute; inset: 0; object-fit: cover; z-index: 1; }
-    .visual::after {
-      content: ""; position: absolute; inset: 0;
-      background: linear-gradient(130deg, rgba(132,238,232,.18), transparent 35%, transparent 68%, rgba(242,199,121,.13));
-      mix-blend-mode: screen; pointer-events: none; z-index: 4;
-    }
-    
-    .tag {
-      position: absolute; z-index: 15; left: 20px; bottom: 20px;
-      padding: 10px 13px; border: 1px solid rgba(255, 255, 255, .24);
-      border-radius: 10px; background: rgba(4, 12, 16, .72); backdrop-filter: blur(9px);
-      font-size: 11px; letter-spacing: 1.4px; font-weight: 800; color: var(--text);
-    }
+    <!-- SLIDE 04: DESPUÉS DE HYDROFACIAL -->
+    <section class="slide reverse" data-voice="After cleansing, the skin looks clearer and more prepared. This is the clean canvas needed for the next stages.">
+      <div class="slide-grid">
+        <div class="copy slide-content">
+          <div class="step">04 / CLEAN CANVAS</div>
+          <h2>Clarity begins<br><span>inside the pore.</span></h2>
+          <p>Once buildup is lifted, the skin is better prepared for the treatment steps that follow. The goal is not simply to cleanse, but to create a visibly fresher foundation.</p>
+          <div class="benefits">
+            <div class="benefit">Cleaner-looking pore environment</div>
+            <div class="benefit">A smoother visual base for subsequent care</div>
+          </div>
+        </div>
+        <div class="visual" data-tilt>
+          <img src="desp-de-hydrofacial.png" alt="Skin after Hydrofacial">
+          <div class="pulse"></div>
+          <div class="tag">AFTER HYDROFACIAL • REFINED LOOK</div>
+        </div>
+      </div>
+    </section>
 
-    /* CAPA DE CRISTAL ESMERILADA EDUCATIVA (TRADUCIBLE PARA SHOPIFY) */
-    .educational-overlay {
-      position: absolute; inset: auto 20px 75px 20px; z-index: 20;
-      padding: 18px; border-radius: 16px;
-      background: rgba(11, 20, 27, 0.7); border: 1px solid var(--panel-border);
-      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-      transform: translateY(20px); opacity: 0; transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .slide.active .educational-overlay { transform: translateY(0); opacity: 1; }
-    .educational-overlay h3 { margin: 0 0 6px 0; font-size: 12px; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; }
-    .educational-overlay p { margin: 0; font-size: 13px; line-height: 1.5; color: #e2ecef; }
+    <!-- SLIDE 05: POLLAGEN ANTES (FOCO DE MANCHAS Y ARRUGAS) -->
+    <section class="slide" data-voice="Step five. We look at texture before Pollagen. Fine lines, uneven surface, and loss of firmness can make the skin look tired even when it is clean.">
+      <div class="slide-grid">
+        <div class="copy slide-content">
+          <div class="step">05 / POLLAGEN PREP</div>
+          <h2>When texture needs<br><span>more than cleansing.</span></h2>
+          <p>Clean skin can still show uneven texture, visible pores and early signs of loss of firmness. This is where the renewal-focused phase begins.</p>
+          <div class="benefits">
+            <div class="benefit">Focuses on the appearance of texture and firmness</div>
+            <div class="benefit">Complements the deep-cleansing stages</div>
+          </div>
+        </div>
+        <div class="visual" data-tilt>
+          <img src="pollagen-antes.png" alt="Skin before Pollagen treatment">
+          <div class="tag">BEFORE POLLAGEN • TEXTURE + FIRMNESS</div>
+          <div class="educational-overlay">
+            <h3>Tratamiento de Manchas y Arrugas / Anti-Aging Focus</h3>
+            <p>Las manchas de melanina asentadas y las líneas de expresión requieren energía térmica estructural. Esta fase rompe la rigidez epidérmica para preparar las células y activar la regeneración acelerada de elastina.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    /* EL MANÍPULO ROBÓTICO FLOTANTE 3D */
-    .handle-device {
-      position: absolute; z-index: 30;
-      width: 200px; height: 200px; pointer-events: none;
-      background-size: contain; background-repeat: no-repeat; background-position: center;
-      /* Efecto de entrada lateral interpolada por JS */
-      transform: translate3d(var(--h-tx, 150px), var(--h-ty, -100px), 0) rotate(var(--h-rot, 25deg));
-      opacity: var(--h-op, 0);
-      transition: transform 0.15s ease-out, opacity 0.4s ease-out;
-      filter: drop-shadow(0 15px 25px rgba(0,0,0,0.6));
-    }
-    .h-hydro { background-image: url('handle-hydro.png'); filter: drop-shadow(0 0 15px rgba(133,227,221,0.4)); }
-    .h-ozone { background-image: url('handle-ozone.png'); filter: drop-shadow(0 0 15px rgba(179,142,255,0.4)); }
-    .h-pollagen { background-image: url('handle-pollagen.png'); filter: drop-shadow(0 0 15px rgba(242,199,121,0.4)); }
-    .h-dcool { background-image: url('handle-dcool.png'); }
+    <!-- SLIDE 06: DESPUÉS DE POLLAGEN -->
+    <section class="slide reverse" data-voice="After the Pollagen stage, the visual goal is smoother-looking texture, a more refined surface, and a renewed glow.">
+      <div class="slide-grid">
+        <div class="copy slide-content">
+          <div class="step">06 / POLLAGEN RESULT</div>
+          <h2>Texture looks<br><span>more refined.</span></h2>
+          <p>Pollagen is presented as the renewal stage of the experience: supporting a smoother-looking surface and a more polished, luminous appearance.</p>
+          <div class="benefits">
+            <div class="benefit">Helps support the look of smoother skin texture</div>
+            <div class="benefit">Designed for a more renewed, radiant finish</div>
+          </div>
+        </div>
+        <div class="visual" data-tilt>
+          <img src="desp-pollagen.png" alt="Skin after Pollagen treatment">
+          <div class="pulse"></div>
+          <!-- Entra cabezal Pollagen con pulso de calor dorado -->
+          <div class="handle-device h-pollagen"></div>
+          <div class="tag">AFTER POLLAGEN • RENEWED LOOK</div>
+        </div>
+      </div>
+    </section>
 
-    /* EFECTO VIVO: MICROPARTÍCULAS DE ACTIVIDAD BIOLÓGICA (DEMODEX VIVO) */
-    .biological-swarm { position: absolute; inset: 0; z-index: 2; pointer-events: none; overflow: hidden; opacity: 0.7; }
-    .micro-organism { position: absolute; width: 6px; height: 6px; background: rgba(133, 227, 221, 0.4); border-radius: 50%; filter: blur(0.5px); animation: swarmMove 6s infinite linear; }
-    .micro-organism:nth-child(2n) { width: 5px; height: 12px; border-radius: 6px; background: rgba(242,199,121,0.3); animation-duration: 9s; }
-    .micro-organism:nth-child(3n) { width: 7px; height: 7px; background: rgba(179,142,255,0.3); animation-duration: 7s; filter: blur(1.5px); }
-    @keyframes swarmMove {
-      0% { transform: translateY(530px) translateX(0) rotate(0deg); opacity: 0; }
-      15% { opacity: 0.8; }
-      85% { opacity: 0.8; }
-      100% { transform: translateY(-40px) translateX(80px) rotate(360deg); opacity: 0; }
-    }
+    <!-- SLIDE 07: D-COOL EN CALOR -->
+    <section class="slide" data-voice="Step seven. D-Cool begins with a warming phase. Controlled heat is used as part of the treatment sequence before the cooling finish.">
+      <div class="slide-grid">
+        <div class="copy slide-content">
+          <div class="step">07 / D-COOL HEAT</div>
+          <h2>Warmth that<br><span>activates.</span></h2>
+          <p>The warming phase is designed as an activation moment within the D-Cool protocol, preparing the skin for the transition into the cooling stage.</p>
+          <div class="benefits">
+            <div class="benefit">Heat-focused phase within the D-Cool sequence</div>
+            <div class="benefit">Creates a transition toward the cooling finish</div>
+          </div>
+        </div>
+        <div class="visual" data-tilt>
+          <img src="d-cool-during-hot.png" alt="D-Cool heat treatment">
+          <div class="pulse" style="background:repeating-radial-gradient(circle, rgba(255,107,107,0.15) 0 2px, transparent 4px 45px);"></div>
+          <!-- Cabezal D-Cool activado en Calor (Brillo rojo controlado en CSS) -->
+          <div class="handle-device h-dcool" style="filter: drop-shadow(0 0 15px rgba(255,107,107,0.5));"></div>
+          <div class="tag">D-COOL • HEAT ACTIVATION</div>
+        </div>
+      </div>
+    </section>
 
-    .pulse, .cold, .steam, .ozone-ray { position: absolute; inset: 0; z-index: 5; pointer-events: none; mix-blend-mode: screen; }
-    .pulse { background: repeating-radial-gradient(circle at 50% 42%, rgba(124,235,228,.34) 0 2px, transparent 3px 54px); animation: pulse 3.6s infinite; }
-    .cold { background: linear-gradient(180deg, rgba(120,210,255,.14), rgba(100,190,255,.34), transparent 72%); animation: cold 2.8s ease-in-out infinite; }
-    .steam { background: radial-gradient(ellipse at 20% 90%, rgba(255,255,255,.28), transparent 28%), radial-gradient(ellipse at 70% 90%, rgba(255,255,255,.19), transparent 33%); filter: blur(14px); animation: steam 5s ease-in-out infinite; }
-    .ozone-ray { background: radial-gradient(circle at 50% 50%, rgba(179, 142, 255, 0.2), transparent 65%); animation: cold 3.2s infinite; }
+    <!-- SLIDE 08: D-COOL EN FRÍO -->
+    <section class="slide reverse" data-voice="Then comes the cooling phase. The contrast of cool sensation is designed to finish the sequence with a fresh, calming skin reset.">
+      <div class="slide-grid">
+        <div class="copy slide-content">
+          <div class="step">08 / D-COOL COLD</div>
+          <h2>Cool down.<br><span>Reset the glow.</span></h2>
+          <p>The cooling phase completes the D-Cool experience with a visibly fresh, revitalized finish that feels as good as it looks.</p>
+          <div class="benefits">
+            <div class="benefit">Cooling finish for a refreshed treatment experience</div>
+            <div class="benefit">A final reset designed around comfort and glow</div>
+          </div>
+        </div>
+        <div class="visual" data-tilt>
+          <img src="d-cool-during-could.png" alt="D-Cool cooling treatment">
+          <div class="cold"></div>
+          <!-- Cabezal D-Cool activado en Frío (Brillo azul criogénico) -->
+          <div class="handle-device h-dcool" style="filter: drop-shadow(0 0 20px rgba(121,185,255,0.6));"></div>
+          <div class="tag">D-COOL • COOLING RESET</div>
+        </div>
+      </div>
+    </section>
 
-    @keyframes pulse { 0% { transform: scale(.4); opacity: .05 } 50% { opacity: .65 } 100% { transform: scale(1.45); opacity: 0 } }
+    <!-- SLIDE 09 Y 11-12: COMPARATIVAS EN TEXTURA Y SUPERFICIE -->
+    <section class="slide" id="comparison">
+      <div class="compare">
+        <div class="step" style="text-align:center">THE TRANSFORMATION</div>
+        <h2>From visible texture<br>to a <span>refined-looking finish.</span></h2>
+        <div class="compare-grid">
+          <div class="compare-card">
+            <img src="beforeandafter2.png" alt="Before and after skin texture comparison">
+            <strong>TEXTURE COMPARISON</strong>
+          </div>
+          <div class="compare-card">
+            <img src="beforeandafter3.png" alt="Before and after skin surface comparison">
+            <strong>SURFACE COMPARISON</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 10: CONCLUSIÓN FINAL (IMAGEN MASTER DE CIERRE) -->
+    <section class="slide final" data-voice="This is the D-Cool Skin Reset experience. A complete visual journey from deep cleansing to a fresher, smoother-looking, radiant finish.">
+      <img class="final-bg" src="whole-treatment-after.png" alt="Whole treatment final result">
+      <div class="slide-content">
+        <div class="eyebrow">THE COMPLETE EXPERIENCE</div>
+        <h2>Not just a facial.<br><span>A skin reset.</span></h2>
