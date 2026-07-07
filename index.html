@@ -1,89 +1,163 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>D-Cool | Ultimate Skin Reset Cinematic Experience</title>
-  <style>
-    /* VARIABLES DE COLOR Y PARÁMETROS CINEMÁTICOS DE ALTA GAMA */
-    :root {
-      --bg: #04080c;
-      --panel: rgba(11, 20, 27, 0.65);
-      --panel-border: rgba(133, 227, 221, 0.18);
-      --text: #f5f7f8;
-      --muted: #a6b7c0;
-      --aqua: #85e3dd;
-      --blue: #6ca8f0;
-      --gold: #f2c779;
-      --purple: #b38eff;
-      --ruby: #ff6b6b;
-      --line: rgba(185, 229, 232, 0.12);
-    }
+  <!-- MARCO PRINCIPAL DE LA EXPERIENCIA CINEMÁTICA -->
+  <main class="deck">
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    
-    body {
-      margin: 0;
-      color: var(--text);
-      background: 
-        radial-gradient(circle at 15% 15%, rgba(43, 121, 140, 0.22), transparent 40%),
-        radial-gradient(circle at 85% 75%, rgba(122, 82, 32, 0.15), transparent 35%),
-        var(--bg);
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      overflow-x: hidden;
-    }
+    <!-- SLIDE 01: ANÁLISIS DE PIEL (EL FOCO DEL DEMODEX) -->
+    <section class="slide active" id="step1" data-voice="Step one. We analyze the deep follicular environment, targeting hidden congestion, excess lipids, and microscopic demodex mites that trigger redness and texture irregularities.">
+      <div class="slide-grid">
+        <div class="copy slide-content">
+          <div class="step">01 / SKIN ANALYSIS</div>
+          <h2>What the eye<br><span>cannot see.</span></h2>
+          <p>True skin congestion runs beneath the surface. Follicular buildup, trapped lipids, and micro-pathogens distort light reflection, making the complexion look tired, rigid, and uneven.</p>
+          <div class="benefits">
+            <div class="benefit">Exposes deep sebum crystallization patterns.</div>
+            <div class="benefit">Prepares the cellular environment for vacuum extraction.</div>
+          </div>
+        </div>
+        <div class="visual" data-tilt>
+          <!-- IMAGEN 1: PIEL SUCIA CON MICROPARTÍCULAS EN BUCLE -->
+          <img src="piel-sucia.png" alt="Skin pore micro-environment before treatment">
+          <div class="micro-particles">
+            <div class="particle" style="left:10%; animation-delay:0s;"></div>
+            <div class="particle" style="left:35%; animation-delay:2s;"></div>
+            <div class="particle" style="left:60%; animation-delay:1s;"></div>
+            <div class="particle" style="left:80%; animation-delay:4s;"></div>
+          </div>
+          <div class="tag">BEFORE • CONGESTED EXTRACTION</div>
+          <!-- CAPA ELEGANTE ESMERILADA TOTALMENTE TRADUCIBLE EN SHOPIFY -->
+          <div class="educational-card">
+            <h3>¿Qué es el Demodex? / What is Demodex?</h3>
+            <p>Es un ácaro microscópico que habita en los folículos pilosos y glándulas sebáceas. El exceso de grasa permite su proliferación, causando inflamación, manchas y acelerando las arrugas. Se combate eficazmente mediante una limpieza profunda profesional regular, idealmente mensual, eliminando por completo sus residuos dañinos y rejuveneciendo la barrera dérmica.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    /* BARRA SUPERIOR DE NAVEGACIÓN Y PROGRESO */
-    .topbar {
-      position: fixed; inset: 0 0 auto 0; z-index: 100;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 20px clamp(20px, 5vw, 60px);
-      background: linear-gradient(180deg, rgba(4, 8, 12, 0.95) 20%, rgba(4, 8, 12, 0.4) 70%, transparent);
-      pointer-events: none;
-    }
-    .brand { font-size: 13px; letter-spacing: 4px; font-weight: 900; pointer-events: auto; }
-    .brand span { color: var(--aqua); }
-    .progress { width: min(220px, 30vw); height: 4px; background: rgba(255, 255, 255, 0.12); border-radius: 99px; overflow: hidden; }
-    .progress i { display: block; width: 0%; height: 100%; background: linear-gradient(90deg, var(--aqua), var(--blue)); transition: width 0.3s ease-out; }
+    <!-- SLIDE 02: HIDROFACIAL (PROCESO DE SUCCIÓN) -->
+    <section class="slide" data-voice="Step two. Hydrofacial cleansing uses controlled fluid and vortex suction to lift surface buildup while refreshing the skin barrier.">
+      <div class="slide-grid">
+        <div class="copy slide-content">
+          <div class="step">02 / HYDROFACIAL CLEANSE</div>
+          <h2>Vortex Cleanse.<br><span>Lift & Extract.</span></h2>
+          <p>Utilizing targeted hydrodynamic fluid pressure to instantly dissolve dead cells. Controlled vacuum mechanics gently lift physical debris, clearing the path for oxygenation.</p>
+          <div class="benefits">
+            <div class="benefit">Water-guided vacuum extraction system.</div>
+            <div class="benefit">Instantly flushes out follicle-clogging impurities.</div>
+          </div>
+        </div>
+        <div class="visual" data-tilt>
+          <!-- IMAGEN 3: HYDROFACIAL -->
+          <img src="hydrofacial.png" alt="Vortex hydro-extraction active">
+          <div class="steam"></div>
+          <!-- MANÍPULO FLOTANTE DE HYDROFACIAL -->
+          <div class="handle-3d handle-hydro"></div>
+          <div class="tag">HYDROFACIAL • CLEANSE & LIFT</div>
+        </div>
+      </div>
+    </section>
 
-    /* CONTENEDOR PRINCIPAL DE DIAPOSITIVAS */
-    .deck { width: 100%; }
-    
-    .slide {
-      min-height: 100vh;
-      padding: clamp(100px, 12vh, 150px) clamp(20px, 5vw, 80px) clamp(80px, 8vh, 120px);
-      display: grid;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-      border-bottom: 1px solid var(--line);
-    }
-    .slide::before {
-      content: ""; position: absolute; inset: 0;
-      background: linear-gradient(90deg, rgba(4, 8, 12, 0.88) 0%, rgba(4, 8, 12, 0.15) 50%, rgba(4, 8, 12, 0.88) 100%);
-      z-index: 1; pointer-events: none;
-    }
+    <!-- SLIDE 03: DESPUÉS DE HYDROFACIAL (LIENZO LIMPIO) -->
+    <section class="slide reverse" data-voice="After cleansing, the skin looks clearer and more prepared. This is the clean canvas needed for the next therapeutic stages.">
+      <div class="slide-grid">
+        <div class="copy slide-content">
+          <div class="step">03 / CLEAN CANVAS</div>
+          <h2>Clarity begins<br><span>inside the pore.</span></h2>
+          <p>With debris completely evacuated, the micro-channels are open and ready. This is not just clean skin; it is a highly receptive biological foundation for advanced ingredients.</p>
+          <div class="benefits">
+            <div class="benefit">Evacuated pore channels with zero lipid blockage.</div>
+            <div class="benefit">Maximum preparation for deep dermis absorption.</div>
+          </div>
+        </div>
+        <div class="visual" data-tilt>
+          <!-- IMAGEN 4: DESP-DE-HYDROFACIAL -->
+          <img src="desp-de-hydrofacial.png" alt="Purified skin canvas profile">
+          <div class="pulse"></div>
+          <div class="tag">AFTER HYDROFACIAL • REFINED</div>
+        </div>
+      </div>
+    </section>
 
-    /* SECCIÓN HERO CINEMÁTICA */
-    .hero { min-height: 100vh; text-align: center; display: grid; place-items: center; padding: 140px 20px 80px; }
-    .hero::before { background: radial-gradient(circle at center, rgba(7, 22, 29, 0.25), rgba(4, 8, 12, 0.9) 75%); }
-    .hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.45; filter: contrast(1.05); transform: scale(1.03); transition: transform 2s ease; }
-    .hero:hover .hero-bg { transform: scale(1.08); }
-    .hero-content, .slide-content { position: relative; z-index: 10; }
-    .hero-content { max-width: 950px; }
-    
-    .eyebrow { color: var(--aqua); font-size: 12px; letter-spacing: 5px; font-weight: 800; text-transform: uppercase; margin-bottom: 20px; }
-    h1, h2, p { margin: 0; }
-    h1 { font-family: 'Georgia', serif; font-size: clamp(44px, 7.5vw, 105px); line-height: 0.95; letter-spacing: -2px; text-shadow: 0 10px 30px rgba(0,0,0,0.7); }
-    h1 em { font-style: normal; color: var(--aqua); linear-gradient(90deg, var(--aqua), var(--blue)); }
-    .hero p { max-width: 680px; margin: 26px auto 0; color: #cedde2; font-size: clamp(16px, 1.8vw, 20px); line-height: 1.6; }
-    
-    .hero-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 35px; }
-    button, .btn { border: 1px solid rgba(151, 231, 225, 0.4); background: rgba(11, 29, 35, 0.75); color: white; padding: 14px 24px; border-radius: 99px; font-weight: 700; letter-spacing: 1px; cursor: pointer; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); text-decoration: none; display: inline-flex; align-items: center; }
-    button:hover, .btn:hover { transform: translateY(-3px); background: rgba(28, 70, 78, 0.9); box-shadow: 0 10px 20px rgba(133,227,221,0.15); border-color: var(--aqua); }
-    .btn.primary { background: linear-gradient(90deg, #7ee6de, #62a3f0); color: #04080c; border: 0; font-weight: 800; }
-    .btn.primary:hover { box-shadow: 0 10px 25px rgba(98,163,240,0.35); }
-    .scroll-note { margin-top: 45px; font-size: 11px; letter-spacing: 4px; color: #a4b9c0; animation: bounce 2s infinite; }
+    <!-- SLIDE 04: CUIDADO CON OZONO (BALANCE RADIANTE) -->
+    <section class="slide" data-voice="Step four. Ozone care is used as a refreshing support stage after cleansing, helping create a clean, balanced feeling on the skin.">
+      <div class="slide-grid">
+        <div class="copy slide-content">
+          <div class="step">04 / OZONE CARE</div>
+          <h2>Freshness with<br><span>a purified finish.</span></h2>
+          <p>The application of high-frequency ozone therapy neutralizes surface impurities, tightens micro-vessels, and leaves an intense, freshly oxygenated, healthy ecosystem.</p>
+          <div class="benefits">
+            <div class="benefit">Highly purifying post-extraction balance.</div>
+            <div class="benefit">Soothes follicular micro-irritation instantly.</div>
+          </div>
+        </div>
+        <div class="visual" data-tilt>
+          <!-- IMAGEN 2: OZONO -->
+          <img src="ozono.png" alt="Ozone purification treatment phase">
+          <div class="ozone-glow"></div>
+          <!-- MANÍPULO FLOTANTE DE OZONO -->
+          <div class="handle-3d handle-ozone"></div>
+          <div class="tag">OZONE • PURIFY & SOOTHE</div>
+        </div>
+      </div>
+    </section>
 
-    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+    <!-- SLIDE 05: PREPARACIÓN POLLAGEN (ARRUGAS Y MANCHAS) -->
+    <section class="slide reverse" data-voice="Step five. Before the renewal stage, we address deeper structural concerns: uneven melanin distribution causing dark spots, and structural collagen loss responsible for fine lines and wrinkles.">
+      <div class="slide-grid">
+        <div class="copy slide-content">
+          <div class="step">05 / POLLAGEN PREP</div>
+          <h2>When texture needs<br><span>structural renewal.</span></h2>
+          <p>Clean pores are only the base. To completely remove dark spots, hyperpigmentation, and hollow wrinkles, the fibroblasts must be stimulated to rebuild deep tissue.</p>
+          <div class="benefits">
+            <div class="benefit">Targets deep melanin clusters and uneven tone.</div>
+            <div class="benefit">Identifies structural collapse areas for wrinkles.</div>
+          </div>
+        </div>
+        <div class="visual" data-tilt>
+          <!-- IMAGEN 5: POLLAGEN ANTES -->
+          <img src="pollagen-antes.png" alt="Skin texture analysis before structural collagen renewal">
+          <div class="tag">BEFORE POLLAGEN • DAMAGE PROFILE</div>
+          <!-- CAPA ELEGANTE ESMERILADA TOTALMENTE TRADUCIBLE EN SHOPIFY -->
+          <div class="educational-card">
+            <h3>Targeting Spots & Wrinkles</h3>
+            <p>Las manchas de melanina y las arrugas no se quitan con limpieza superficial. Esta fase prepara la piel para recibir ondas térmicas enfocadas en fragmentar el pigmento oscuro y activar el colágeno nuevo para empujar la arruga desde adentro hacia afuera.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 06: RESULTADO POLLAGEN (REPARACIÓN DE ARRUGAS Y TONO) -->
+    <section class="slide" data-voice="Following the Pollagen stage, cellular metabolism is triggered. Melanin clusters are visibly reduced, and structural fibers are reinforced for a smoother, wrinkle-softened appearance.">
+      <div class="slide-grid">
+        <div class="copy slide-content">
+          <div class="step">06 / POLLAGEN RESULT</div>
+          <h2>Texture looks<br><span>smooth & volume-restored.</span></h2>
+          <p>The result of multi-polar radiofrequency activation: skin density is elevated, localized dark patches fade due to cellular turnover, and the surface displays an immediate polished glow.</p>
+          <div class="benefits">
+            <div class="benefit">Visible flattening of expression lines.</div>
+            <div class="benefit">Brightened epidermal layer with uniform tone.</div>
+          </div>
+        </div>
+        <div class="visual" data-tilt>
+          <!-- IMAGEN 6: DESP-POLLAGEN -->
+          <img src="desp-pollagen.png" alt="Skin surface after Pollagen synthesis">
+          <div class="pulse"></div>
+          <!-- MANÍPULO FLOTANTE DE POLLAGEN -->
+          <div class="handle-3d handle-pollagen"></div>
+          <div class="tag">AFTER POLLAGEN • RECONSTRUCTED</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 07: D-COOL FASE CALOR (ACTIVACIÓN CIRCULATORIA) -->
+    <section class="slide reverse" data-voice="Step seven. D-Cool begins with a warming phase. Controlled heat is used as part of the treatment sequence to open cellular doors before the cooling lock.">
+      <div class="slide-grid">
+        <div class="copy slide-content">
+          <div class="step">07 / D-COOL HYPERTHERMIA</div>
+          <h2>Thermal warmth<br><span>that activates absorption.</span></h2>
+          <p>Delivering controlled heating up to 40°C. This critical shock induces rapid blood flow, expands cells temporarily, and permits massive transdermal penetration of customized serum nutrients.</p>
+          <div class="benefits">
+            <div class="benefit">Expands penetration pathways via electroporations.</div>
+            <div class="benefit">Boosts local tissue nutrition absorption by 400%.</div>
+          </div>
+        </div>
+        <div class="visual" data-tilt>
+          <!-- IMAGEN 7: D-COOL DURING HOT -->
